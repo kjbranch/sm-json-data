@@ -1114,7 +1114,13 @@
                 {
                   "name": "Go Back Up",
                   "notable": false,
-                  "requires": ["Morph"], 
+                  "requires": [
+                    "Morph",
+                      {"or": [
+                        "canWalljump",
+                        "h_canFly"
+                      ]}
+                  ], 
                   "obstacles": [
                     {
                       "id": "B",
@@ -1142,7 +1148,13 @@
                 {
                   "name": "Break the PB Blocks",
                   "notable": false,
-                  "requires": ["h_canUsePowerBombs"],
+                  "requires": [
+                    "h_canUsePowerBombs",
+                      {"or": [
+                        "canWalljump",
+                        "h_canFly"
+                      ]}
+                  ],
                   "obstacles": [
                     {
                       "id": "A",
