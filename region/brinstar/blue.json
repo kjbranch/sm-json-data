@@ -1128,19 +1128,7 @@
                     },
                     {
                       "id": "A",
-                      "requires": [
-                        {"or":[
-                          "ScrewAttack",
-                          "Bombs",
-                          {"and":[
-                            "PowerBomb",
-                            {"ammo": {
-                              "type": "PowerBomb",
-                              "count": 1
-                            }}
-                          ]}
-                        ]}
-                      ]
+                      "requires": [ "h_canDestroyBombWalls" ]
                     }
                   ],
                   "note": "If the Crumble Block has been destroyed while going down, it's possible to go back up without breaking the PB blocks."
@@ -1152,7 +1140,12 @@
                     "h_canUsePowerBombs",
                       {"or": [
                         "canWalljump",
-                        "h_canFly"
+                        "h_canFly",
+                          {"canShineCharge": {
+                            "usedTiles": 33,
+                            "shinesparkFrames": 43,
+                            "openEnd": 2
+                          }}
                       ]}
                   ],
                   "obstacles": [
@@ -1160,16 +1153,11 @@
                       "id": "A",
                       "requires": [
                         {"or": [
-                          "ScrewAttack",
-                          "Bombs",
+                          "h_canDestroyBombWalls",
                           {"canShineCharge": {
                             "usedTiles": 33,
                             "shinesparkFrames": 43,
                             "openEnd": 2
-                          }},
-                          {"ammo": {
-                            "type": "PowerBomb",
-                            "count": 1
                           }}
                         ]}
                       ]
