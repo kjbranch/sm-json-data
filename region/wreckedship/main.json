@@ -956,33 +956,24 @@
               "lockType": "bossFight",
               "unlockStrats": [
                 {
-                  "name": "Regular Phantoon",
+                  "name": "Charge",
                   "notable": false,
-                  "requires": [
-                    {
-                      "enemyKill": {
-                        "enemies": [
-                          ["Phantoon"]
-                        ],
-                        "excludedWeapons": ["Super"],
-                        "farmableAmmo": ["Missile"]
-                      }
-                    }
-                  ],
-                  "note": "The strat for Charge-based weapons."
+                  "requires": ["Charge"]
+                },
+                {
+                  "name": "Missiles",
+                  "notable": false,
+                  "requires": ["Missile"],
+                  "note": "No ammo count because Missiles are farmable here."
                 },
                 {
                   "name": "Nintendo Power Phantoon",
                   "notable": false,
-                  "requires": [
-                    {"enemyKill": {
-                      "enemies": [
-                        ["Phantoon"]
-                      ],
-                      "explicitWeapons": ["Super"],
-                      "farmableAmmo": ["Super"]
-                    }}
-                  ]
+                  "requires": ["Super"],
+                  "note": [
+                    "No ammo count because Supers are farmable here.",
+                    "FIXME add tech/energy/item requirements to survive flames."
+                    ]
                 }
               ]
             }
@@ -1587,7 +1578,8 @@
                   "notable": false,
                   "requires": [
                     "Wave",
-                    "ScrewAttack"
+                    "ScrewAttack",
+                    "Morph"
                   ],
                   "note": "The shot blocks can be broken with Wave by scrolling the screen right then coming back out of the tunnel and walking right."
                 }
@@ -2006,7 +1998,10 @@
                 {
                   "name": "HiJump",
                   "notable": false,
-                  "requires": ["HiJump"]
+                  "requires": [
+                    "HiJump",
+                    "canWalljump"
+                  ]
                 },
                 {
                   "name": "Bomb Jump",
@@ -2038,14 +2033,21 @@
                       "fromNode": 1,
                       "usedTiles": 3
                     }},
-                    "SpeedBooster"
+                    "SpeedBooster",
+                      {"or": [
+                        "canWalljump",
+                        "HiJump"
+                      ]}
                   ],
                   "note": "A bit finicky for shorter runways, but exactly 3 tiles works."
                 },
                 {
                   "name": "Sponge Bath In-Room Speedjump",
                   "notable": true,
-                  "requires": ["SpeedBooster"],
+                  "requires": [
+                    "SpeedBooster",
+                    "canWalljump"
+                  ],
                   "note": "It doesn't work from flush against the door. Start moving about half a tile away from it."
                 }
               ]
@@ -2289,7 +2291,18 @@
                 {
                   "name": "Base",
                   "notable": false,
-                  "requires": []
+                  "requires": [
+                    {"or": [
+                      "Gravity",
+                      "HiJump",
+                      "SpaceJump"
+                    ]}
+                  ]
+                },
+                {
+                  "name": "Down Grab",
+                  "notable": false,
+                  "requires": [ "canDownGrab" ]
                 }
               ]
             }
@@ -2410,7 +2423,7 @@
                     "h_canUseSpringBall"
                   ],
                   "note": [
-                    "From a standstill at the door, jump just before the first stept.",
+                    "From a standstill at the door, jump just before the first step.",
                     "Mid-air mockball and bounce on the first platform.",
                     "This should bounce on the third platform and get to the item."
                   ]
@@ -2423,7 +2436,10 @@
                 {
                   "name": "Walljumps",
                   "notable": false,
-                  "requires": ["Gravity"]
+                  "requires": [
+                    "Gravity",
+                    "canWalljump"
+                  ]
                 },
                 {
                   "name": "Space Jump",
