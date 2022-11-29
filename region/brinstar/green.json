@@ -2458,7 +2458,7 @@
                   "requires": ["canTurnaroundAimCancel"],
                   "note": [
                     "Not notable because it's a one-way strat. It takes Morph or a Morphless Tunnel Crawl to get back out.",
-                    "Getting into the tube, with a wall jump or other method is assumed."
+                    "Getting into the tube with a wall jump or other method is assumed."
                   ]
                 },
                 {
@@ -2467,7 +2467,7 @@
                   "requires": ["canMorphlessTunnelCrawl"],
                   "note": [
                     "It's a long Tunnel Crawl, so there's a heavy softlock risk.",
-                    "Getting into the tube, with a wall jump or other method is assumed."
+                    "Getting into the tube with a wall jump or other method is assumed."
                   ]
                 }
               ]
