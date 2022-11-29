@@ -2373,8 +2373,7 @@
                   "requires": [
                     {"or": [
                       "SpaceJump",
-                      "canWalljump",
-                      "canUseFrozenEnemies"
+                      "canWalljump"
                     ]},
                     {"canShineCharge": {
                       "usedTiles": 32,
