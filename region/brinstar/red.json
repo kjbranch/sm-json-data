@@ -550,7 +550,7 @@
                   "name": "Space Jump",
                   "notable": false,
                   "requires": [
-                    "SpaceJump"
+                    "SpaceJump",
                     {"enemyKill":{
                       "enemies": [
                         [ "Ripper", "Ripper", "Ripper", "Ripper" ]
