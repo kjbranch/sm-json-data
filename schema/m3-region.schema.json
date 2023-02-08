@@ -4,6 +4,7 @@
 
   "definitions": {
     "strat": {
+      "$id": "#/definitions/strat",
       "type": "object",
       "required": [
         "name",
@@ -169,6 +170,28 @@
           "$id": "#/definitions/strat/properties/devNote"
         }
       }
+    },
+    "yields": {
+      "$id": "#/definitions/yields",
+      "type": "array",
+      "title": "Yields",
+      "items": {
+        "$id": "#/definitions/yields/items",
+        "type": "string"
+      }
+    },
+    "physics": {
+      "$id": "#/definitions/physics",
+      "title": "Physics",
+      "description": "Indicates a kind of SuperMetroid physics",
+      "type": "string",
+      "enum": [
+        "normal",
+        "water",
+        "lava",
+        "acid"
+      ],
+      "pattern": "^(.*)$"
     }
   },
 
@@ -520,17 +543,9 @@
                     "additionalProperties": false,
                     "properties": {
                       "physics": {
+                        "$ref" : "#/definitions/physics",
                         "$id": "#/properties/rooms/items/properties/nodes/items/properties/doorEnvironments/items/properties/physics",
-                        "title": "Physics",
-                        "description": "Indicates what kind of physics are active at this door",
-                        "type": "string",
-                        "enum": [
-                          "normal",
-                          "water",
-                          "lava",
-                          "acid"
-                        ],
-                        "pattern": "^(.*)$"
+                        "description": "Indicates what kind of physics are active at this door"
                       },
                       "entranceNodes": {
                         "$id": "#/properties/rooms/items/properties/nodes/items/properties/doorEnvironments/items/properties/entranceNodes",
@@ -907,6 +922,11 @@
                       "devNote": {
                         "$ref" : "m3-note.schema.json#/definitions/devNote",
                         "$id": "#/properties/rooms/items/properties/nodes/items/properties/locks/items/properties/devNote"
+                      },
+                      "yields": {
+                        "$ref" : "#/definitions/yields",
+                        "$id": "#/properties/rooms/items/properties/nodes/items/properties/locks/items/properties/yields",
+                        "description": "A list of flags that are activated by unlocking with this lock."
                       }
                     }
                   }
@@ -1000,14 +1020,9 @@
                   }
                 },
                 "yields": {
+                  "$ref" : "#/definitions/yields",
                   "$id": "#/properties/rooms/items/properties/nodes/items/properties/yields",
-                  "type": "array",
-                  "title": "Yields",
-                  "description": "A list of flags that are activated by interacting with this node.",
-                  "items": {
-                    "$id": "#/properties/rooms/items/properties/nodes/items/properties/yields/items",
-                    "type": "string"
-                  }
+                  "description": "A list of flags that are activated by interacting with this node."
                 },
                 "note": {
                   "$ref" : "m3-note.schema.json#/definitions/note",

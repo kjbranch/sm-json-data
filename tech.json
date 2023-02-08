@@ -252,7 +252,8 @@
               "name": "canDraygonTurretGrappleJump",
               "requires": [
                 "canGrappleJump",
-                "HiJump"
+                "HiJump",
+                {"draygonElectricityFrames": 60}
               ],
               "note": "Using grapple jump off a Draygon turret",
               "devNote": "FIXME does it actually require HiJump?"
@@ -563,6 +564,13 @@
                 }
               ]
             }
+          ]
+        },
+        {
+          "name": "canSafeSpotGT",
+          "requires": [],
+          "note": [
+            "The ability to get into the safe spot in the Golden Torizo fight, where Samus can attack while being safe from GT's standard attacks."
           ]
         }
       ]

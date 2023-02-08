@@ -557,6 +557,12 @@
                     {"resetRoom":{
                       "nodes": [1],
                       "mustStayPut": true
+                    }},
+                    {"adjacentRunway": {
+                      "fromNode": 1,
+                      "usedTiles": 0.5,
+                      "overrideRunwayRequirements": true,
+                      "useFrames": 200
                     }}
                   ]
                 }
@@ -598,6 +604,12 @@
                     {"resetRoom":{
                       "nodes": [2],
                       "mustStayPut": true
+                    }},
+                    {"adjacentRunway": {
+                      "fromNode": 2,
+                      "usedTiles": 0.5,
+                      "overrideRunwayRequirements": true,
+                      "useFrames": 200
                     }}
                   ]
                 },
@@ -828,7 +840,10 @@
                     }},
                     {"adjacentRunway": {
                       "fromNode": 5,
-                      "usedTiles": 0
+                      "usedTiles": 0.5,
+                      "overrideRunwayRequirements": true,
+                      "physics": ["normal"],
+                      "useFrames": 200
                     }}
                   ]
                 }
@@ -1296,10 +1311,18 @@
       "enemies": [
         {
           "id": "e1",
-          "groupName": "Botwoon",
-          "enemyName": "Botwoon",
+          "groupName": "Botwoon 1",
+          "enemyName": "Botwoon 1",
           "quantity": 1,
           "homeNodes": [ 3 ],
+          "stopSpawn": [ "f_DefeatedBotwoon" ]
+        },
+        {
+          "id": "e2",
+          "groupName": "Botwoon 2",
+          "enemyName": "Botwoon 2",
+          "quantity": 1,
+          "homeNodes": [ 4 ],
           "stopSpawn": [ "f_DefeatedBotwoon" ]
         }
       ],
@@ -2072,6 +2095,12 @@
                     {"resetRoom":{
                       "nodes": [2],
                       "mustStayPut": true
+                    }},
+                    {"adjacentRunway": {
+                      "fromNode": 2,
+                      "usedTiles": 0.5,
+                      "overrideRunwayRequirements": true,
+                      "useFrames": 200
                     }}
                   ]
                 },
@@ -2881,6 +2910,12 @@
                     {"resetRoom":{
                       "nodes": [2],
                       "mustStayPut": true
+                    }},
+                    {"adjacentRunway": {
+                      "fromNode": 2,
+                      "usedTiles": 0.5,
+                      "overrideRunwayRequirements": true,
+                      "useFrames": 200
                     }}
                   ]
                 },
@@ -3489,6 +3524,12 @@
                     {"resetRoom":{
                      "nodes": [1],
                      "mustStayPut": true
+                   }},
+                   {"adjacentRunway": {
+                     "fromNode": 1,
+                     "usedTiles": 0.5,
+                     "overrideRunwayRequirements": true,
+                     "useFrames": 200
                    }}
                   ]
                 }
