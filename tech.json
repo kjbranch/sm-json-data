@@ -8,7 +8,12 @@
         {
           "name": "canBePatient",
           "requires": [],
-          "note":"Executing a strat that requires waiting or doing the same thing over and over again for over 3 minutes, even with good execution"
+          "note": "Executing a strat that requires waiting or doing the same thing over and over again for over 3 minutes, even with good execution"
+        },
+        {
+          "name": "canPrepareForNextRoom",
+          "requires": [],
+          "note": "The ability to perform an action as part of a strat that occurs following a room transition."
         },
         {
           "name": "canSuitlessLavaDive",
@@ -32,7 +37,8 @@
               "name": "canSunkenDualWallClimb",
               "requires": [
                 "canSuitlessMaridia",
-                "HiJump"
+                "HiJump",
+                "canWalljump"
               ],
               "note": "Using a series of rapid, consecutive wall jumps underwater, on two nearby walls, to climb upwards.",
               "extensionTechs": [
@@ -73,6 +79,12 @@
           "note": "Jumping off a ledge while moonwalking to fall with an uncapped speed"
         },
         {
+          "name": "canResetFallSpeed",
+          "requires": [ "Morph" ],
+          "note": "Using unmorph as a way to reset fall speed.",
+          "devNote": "Taking enemy damage can get the same effect but more situations where this is used would need to be found first."
+        },
+        {
           "name": "canLateralMidAirMorph",
           "requires": [ "Morph" ],
           "note": "Performing the same input as a mockball, but in midair, in order to maintain forward momentum while morphing in midair",
@@ -100,7 +112,7 @@
           "name": "canMockball",
           "requires": [ "Morph" ],
           "note": [
-            "Maintaining running speed while morphed, by holding jump and down (to crouch) during a lateral jump, then morphing as Samus hits the ground while holding jump and transition from holding down to holding forward.", 
+            "Maintaining running speed while morphed, by holding jump and down (to crouch) during a lateral jump, then morphing as Samus hits the ground while holding jump and transition from holding down to holding forward.",
             "Sometimes referred to as a Machball."
           ]
         },
@@ -133,7 +145,8 @@
         },
         {
           "name": "canTunnelCrawl",
-          "requires": ["Morph"],
+          "requires": [],
+          "devNote": "This should require morph, but can't list it here otherwise the morphless tech will require it. Morph should be listed anywhere this is called.",
           "note": [
             "Moving along a 2-tile-high passage while standing up by repeatedly spin-jumping and then pressing down.",
             "The tech comes with softlock risks without Morph Ball, but this is the safer variant where Morph is available and no softlock can occur."
@@ -280,6 +293,11 @@
                 "Continuous Walljump. Doing a precise forward jump that causes Samus to move back down right after the top of a wall while retaining her momentum.",
                 "This leads to a tiny window where a walljump can be performed, still with the original momentum."
               ]
+            },
+            {
+              "name": "canFlatleyJump",
+              "requires": [ "canTrickyJump" ],
+              "note": "Turn around off of a ledge and jump at the last moment. AKA corner jump."
             }
           ]
         },
@@ -318,11 +336,20 @@
               "note" : "Getting up a 2-tile-high jump in a morph passage by mid-air morphing off the opposite wall"
             },
             {
-              "name": "canFastWalljumpClimb",
+              "name": "canConsecutiveWalljump",
               "requires": [
                 "canWalljump"
               ],
-              "note": "Climbing a wall with consecutive walljumps very quickly, e.g. for setting up a full halfie."
+              "note" : "Climbing a wall with several consecutive walljumps.",
+              "extensionTechs": [
+                {
+                  "name": "canFastWalljumpClimb",
+                  "requires": [
+                    "canConsecutiveWalljump"
+                  ],
+                  "note": "Climbing a wall with consecutive walljumps very quickly, e.g. for setting up a full halfie."
+                }
+              ]
             }
           ]
         },
@@ -339,8 +366,19 @@
       "techs": [
         {
           "name": "canUnmorphBombBoost",
-          "requires": ["h_canBombThings"],
+          "requires": [ "h_canBombThings" ],
           "note": "A tech that involves mid-air morphing to drop a Morph Bomb or PB, then mid-air unmorphing to briefly hover above the bomb, then using the bomb blast to go just a bit higher than max jump height"
+        },
+        {
+          "name": "canWallJumpBombBoost",
+          "requires": [
+            "canWalljump",
+            "h_canBombThings"
+          ],
+          "note": [
+            "The ability to accurately place a Morph Bomb or PB in midair following a walljump.  Then using that bomb explosion to propel Samus forward.",
+            "There is a timing component where the bomb is placed while rising then hit while falling, and a momentum component for maximizing horizontal distance."
+          ]
         },
         {
           "name": "canBombHorizontally",
@@ -368,17 +406,37 @@
             {
               "name": "canJumpIntoIBJ",
               "requires": [ "canIBJ" ],
-              "note":"The ability to start an IBJ from a jump. Can be required in strats that need Samus to IBJ up faster or to avoid something near the ground."
+              "note": "The ability to start an IBJ from a jump. Can be required in strats that need Samus to IBJ up faster or to avoid something near the ground."
             },
             {
               "name": "canBombAboveIBJ",
-              "requires": ["canIBJ"],
+              "requires": [ "canIBJ" ],
               "note": "The ability to break blocks above Samus while maintaining an ongoing IBJ."
             },
             {
+              "name": "canCeilingBombJump",
+              "requires": [ "canBombAboveIBJ" ],
+              "note": "The ability to IBJ to the ceiling and place bombs at a steady rhythm while also moving horizontally."
+            },
+            {
+              "name": "canDiagonalBombJump",
+              "requires": [ "canIBJ" ],
+              "note": "The ability to IBJ with backspin which results in diagonal movement."
+            },
+            {
               "name": "canSandIBJ",
-              "requires": ["canJumpIntoIBJ"],
+              "requires": [ "canJumpIntoIBJ" ],
               "note": "The ability to start an IBJ off a jump on sand. Pretty obnoxious."
+            },
+            {
+              "name": "canDoubleBombJump",
+              "requires": [ "canIBJ" ],
+              "note": "The ability to place a second bomb above the first during an infinite bomb jump in order to ascend faster."
+            },
+            {
+              "name": "canStaggeredBombJump",
+              "requires": [ "canIBJ" ],
+              "note": "The ability to change the bomb placement timing in order control the speed with which you gain height."
             }
           ]
         },
@@ -444,6 +502,11 @@
               ]
             },
             {
+              "name": "canSamusEaterStandUp",
+              "requires": [ "canUseEnemies" ],
+              "note": "Keep control of most of Samus' abilities while captured by the Samus Eater.  Useful for building a shinespark without moving."
+            },
+            {
               "name": "canUseFrozenEnemies",
               "requires": [ "Ice", "canUseEnemies" ],
               "note": "Can use Ice Beam to freeze enemies to use as platforms, or as walljump supports, to reach higher areas",
@@ -483,7 +546,7 @@
                 },
                 {
                   "name": "canIceZebetitesSkip",
-                  "requires": [ 
+                  "requires": [
                     "canUseFrozenEnemies",
                     {"enemyDamage": {
                       "enemy": "Rinka",
@@ -536,6 +599,13 @@
                             "canNonTrivialIceClip"
                           ],
                           "note": "Using a frozen Multiviola to clip through a one-tile-high wall."
+                        },
+                        {
+                          "name": "canMellaIceClip",
+                          "requires": [
+                            "canNonTrivialIceClip"
+                          ],
+                          "note": "Using a frozen Mella to clip through a one-tile-high wall."
                         }
                       ]
                     },
@@ -598,7 +668,7 @@
         },
         {
           "name": "canSuperReachAround",
-          "requires": [ 
+          "requires": [
             "Super",
             {"ammo": {
               "type": "Super",
@@ -654,17 +724,32 @@
         },
         {
           "name": "canSpeedZebetitesSkip",
-          "requires": [ 
+          "requires": [
             "SpeedBooster",
             {"enemyDamage": {
-              "enemy": "Rinka",
-              "type": "contact",
-              "hits": 1
+                "enemy": "Rinka",
+                "type": "contact",
+                "hits": 1
             }}
-           ],
+          ],
           "note": [
             "Being able to glitch through the Mother Brain zebetites by using a shinespark and iFrames.",
             "The tech itself isn't that difficult, what makes it difficult with the vanilla layout is getting the short charge."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "description": "A tech not referring to gameplay but to the handelling of the model itself.",
+      "techs": [
+        {
+          "name": "canRiskPermanentLossOfAccess",
+          "requires": [],
+          "note": [
+            "The acceptance that changes to game state can result in a strat becoming impossible.",
+            "If that strat needed to be executed before the game state change, the game becomes incompletable.",
+            "And that the \"mistake\" may not become visible until much later."
           ]
         }
       ]
@@ -704,8 +789,8 @@
         },
         {
           "name": "canMaridiaTubeClip",
-          "requires": [ "Morph" ],
-          "note": "Clipping into the Maridia tube from above by unmorphing."
+          "requires": [],
+          "note": "The ability to clip into the Maridia tube from above."
         },
         {
           "name": "canCeilingClip",
@@ -718,18 +803,26 @@
         {
           "name": "canTurnaroundAimCancel",
           "requires": [],
-          "note" : "Canceling an aim angle while crouching and turning around, to wiggle to the right"
+          "note": "Canceling an aim angle while crouching and turning around, to wiggle to the right"
+        },
+        {
+          "name": "canMomentumConservingTurnaround",
+          "requires": [],
+          "note": [
+            "Uses the uninteruptable frames of turning around in order to continue moving after hitting a solid object.",
+            "Can be used to make it through an opening door, or barely just past a ledge."
+          ]
         },
         {
           "name": "canXRayStandUp",
-          "requires": [ 
+          "requires": [
             "XRayScope"
           ],
           "note": "Force Samus to stand up, from a crouching position, by canceling use of the XRay Scope while turning around",
           "extensionTechs": [
             {
               "name": "canXRayClimb",
-              "requires": [ 
+              "requires": [
                 "canXRayStandUp"
               ],
               "note": [
@@ -739,7 +832,7 @@
               "extensionTechs": [
                 {
                   "name": "canRightFacingDoorXRayClimb",
-                  "requires": [ 
+                  "requires": [
                     "canXRayClimb",
                     "canStationarySpinJump"
                   ],
@@ -751,7 +844,7 @@
                 },
                 {
                   "name": "canLeftFacingDoorXRayClimb",
-                  "requires": [ 
+                  "requires": [
                     "canXRayClimb",
                     "canStationarySpinJump"
                   ],
