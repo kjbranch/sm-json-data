@@ -2037,7 +2037,7 @@
                   ],
                   "note": [
                     "Use Bombs or SpringBall to navigate with artificial morph without unmorphing.",
-                    "There are scroll PLMs near where you exit Alcatraz, which will overload PLMs when going through them.",
+                    "There are scroll PLMs next to the bomb blocks and on the ledge below the Alcatraz exit, which will overload PLMs when going through them.",
                     "The bomb blocks then become air and can be passed through.",
                     "You will need to briefly navigate off-screen while to the right of Alcatraz before coming back left."
                   ]
@@ -2122,9 +2122,9 @@
                     }}
                   ],
                   "note": [
-                    "There are scroll PLMs near where you exit Alcatraz, which will overload PLMs when going through them.",
-                    "The bomb blocks then become air and can be passed through.",
-                    "Use Bombs or SpringBall to navigate with artificial morph without unmorphing."
+                    "Use Bombs or SpringBall to navigate with artificial morph without unmorphing.",
+                    "There are scroll PLMs next to the bomb blocks and on the ledge below the Alcatraz exit, which will overload PLMs when going through them.",
+                    "The bomb blocks then become air and can be passed through."
                   ]
                 }
               ]
