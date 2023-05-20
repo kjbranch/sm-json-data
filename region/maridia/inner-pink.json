@@ -3115,7 +3115,6 @@
                     "Morph",
                     "canCarefulJump",
                     "canIframeSpikeJump",
-                    {"spikeHits": 2},
                     {"or": [
                       "Grapple",
                       {"and": [
@@ -3123,7 +3122,8 @@
                         "canPlayInSand",
                         "HiJump",
                         "canDamageBoost",
-                        "canSpringBallJumpMidAir"
+                        "canSpringBallJumpMidAir",
+                        {"spikeHits": 2}
                       ]},
                       {"and": [
                         {"adjacentRunway": {
@@ -3132,7 +3132,8 @@
                           "physics": ["normal"]
                         }},
                         "h_canUseSpringBall",
-                        "canMockball"
+                        "canMockball",
+                        {"spikeHits": 2}
                       ]}
                     ]},
                     {"spikeHits": 1},
