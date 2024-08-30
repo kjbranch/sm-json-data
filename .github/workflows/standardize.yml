@@ -11,6 +11,8 @@ jobs:
       - name: Run autoformatting
         working-directory: scripts
         run: python autoformat.py
+      - name: Commit changes
+        run: git commit -am "Run autoformatting"
       - name: Create Pull Request
         uses: actions/github-script@v6
         with:
@@ -30,5 +32,6 @@ jobs:
             github.rest.issues.addLabels({
               owner,
               repo,
+              issue_number: result.data.number,
               labels: ['Run Scripts']
             });
