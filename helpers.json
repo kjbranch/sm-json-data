@@ -1290,6 +1290,15 @@
           "devNote": "Technically all of the strats that use missiles can be done with 1 fewer missile. It requires fairly precise timing and dodging to open it fast enough."
         },
         {
+          "name": "h_AllMotherBrainBarriersCleared",
+          "requires": [
+            "i_MotherBrainBarrier1Clear",
+            "i_MotherBrainBarrier2Clear",
+            "i_MotherBrainBarrier3Clear",
+            "i_MotherBrainBarrier4Clear"
+          ]
+        },
+        {
           "name": "h_partiallyBreakMotherBrainGlass",
           "requires": [
             {"or": [
