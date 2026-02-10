@@ -3,10 +3,26 @@
   "$id": "https://raw.githubusercontent.com/vg-json-data/sm-json-data/master/schema/m3-internal-requirements.schema.json",
   "type": "string",
   "enum": [
+    "i_AcidChozoWithoutSpaceJump",
+    "i_AllItemsSpawn",
+    "i_ammoRefill",
+    "i_ammoRefillAll",
+    "i_blueGateGlitchLeniency",
     "i_canEscapeMorphLocation",
+    "i_ClimbWithoutLava",
+    "i_CrocomireCameraFix",
+    "i_energyStationRefill",
+    "i_equipmentScreenCycleFrames",
+    "i_heatedBlueGateGlitchLeniency",
+    "i_KraidCameraFix",
+    "i_LowerNorfairElevatorDownwardFrames",
+    "i_LowerNorfairElevatorUpwardFrames",
+    "i_MainHallElevatorFrames",
     "i_MotherBrainBarrier1Clear",
     "i_MotherBrainBarrier2Clear",
     "i_MotherBrainBarrier3Clear",
-    "i_MotherBrainBarrier4Clear" 
+    "i_MotherBrainBarrier4Clear",
+    "i_ShinesparksCostEnergy",
+    "i_SupersDoubleDamageMotherBrain"
   ]
 }
