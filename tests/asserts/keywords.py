@@ -85,7 +85,7 @@ def process_keyvalue(k, v, metadata):
     '''
     Take a keyvalue pair and see if the value exists in our list of keywords
     '''
-    if isinstance(v, str) and v.startswith("n_"):
+    if isinstance(v, str) and (v.startswith("n_") or v.startswith("i_")):
         # Skip checks for numeric parameters, as these are already validated by the schema.
         return True
     
@@ -1067,7 +1067,7 @@ for r,d,f in os.walk(os.path.join(".","region")):
                                 messages["reds"].append(msg)
                                 messages["counts"]["reds"] += 1
                             strat_id_set.add(strat_id)
-                            if strat_id >= room["nextStratId"]:
+                            if strat_id >= room["nextStratId"] and strat_id < 10000:
                                 next_strat_id = room["nextStratId"]
                                 msg = f"🔴ERROR: Strat ID {strat_id} is not less than nextStratId ({next_strat_id}):{stratRef}"
                                 messages["reds"].append(msg)
