@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/vg-json-data/sm-json-data/master/schema/m3-internal-requirements.schema.json",
+  "type": "string",
+  "enum": [
+    "i_canEscapeMorphLocation",
+    "i_MotherBrainBarrier1Clear",
+    "i_MotherBrainBarrier2Clear",
+    "i_MotherBrainBarrier3Clear",
+    "i_MotherBrainBarrier4Clear" 
+  ]
+}
