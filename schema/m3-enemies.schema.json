@@ -160,6 +160,12 @@
             "title": "Enemy Drops",
             "description": "Describes the drop table for the enemy. All individual values are out of 102."
           },
+          "buffedDrops": {
+            "$ref": "#/definitions/enemyDrops",
+            "title": "Enemy Drops with Buffed Drops Quality of Life",
+            "description": "Describes the buffed drop table for the enemy if there is one. This would replace the 'drops' field if enabled for some enemies.",
+            "default": []
+          },
           "farmableDrops": {
             "$ref": "#/definitions/enemyDrops",
             "title": "Farmable Particle Drop Rates",
