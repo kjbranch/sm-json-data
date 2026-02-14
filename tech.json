@@ -2106,6 +2106,18 @@
             "Doing this allows for a fast beam shot following the item use, or can reduce button input complexity.",
             "The button combination is 'Item Select' + 'Item Cancel' pressed together."
           ]
+        },
+        {
+          "id": 10001,
+          "name": "canHyperGateShot",
+          "techRequires": [],
+          "otherRequires": [],
+          "note": [
+            "The ability to shoot blue & green gates from either side using Hyper Beam during the escape.",
+            "This is easy to do; this tech just represents knowing it can be done.",
+            "This is based on a randomizer patch applied on all settings,",
+            "as in the vanilla game it isn't possible to open green gates using Hyper Beam."
+          ]
         }
       ]
     },
@@ -3555,10 +3567,11 @@
           "note": [
             "Understanding game behavior related to how the planet is awakened.",
             "The planet is awakened by unlocking any gray door locked by killing enemies in the room (not including bosses or minibosses).",
-            "Pit Room and Baby Kraid Room are two examples where this can be done.",
+            "Pit Room, Baby Kraid Room, Metal Pirates Room, and Plasma Room are the places where this can be done in the randomizer.",
             "Awakening the planet causes enemies to spawn in Parlor, Climb, Morph Ball Room, Construction Zone, and Blue Brinstar Energy Tank Room.",
-            "It also causes the item in the left side of Morph Ball Room and in 230 Missile Room to spawn.",
-            "The item and enemies in Pit Room do not spawn until entering with Morph and Missiles collected, regardless of whether the planet is awake."
+            "It also causes the item in the left side of Morph Ball Room and in The Final Missile to spawn.",
+            "The item and enemies in Pit Room do not spawn until entering with Morph and Missiles collected, regardless of whether the planet is awake.",
+            "If the quality-of-life option 'All items spawn from start' is enabled, as it is by default, then the items will already be spawned anyway, but awakening the planet can still matter because of its effects on enemies."
           ],
           "devNote": [
             "This tech is for understanding how the planet is awakened and how to utilize that.",

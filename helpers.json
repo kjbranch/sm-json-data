@@ -8,21 +8,17 @@
         {
           "name": "h_heatProof",
           "requires": [
-            {"or": [
-              "Varia",
-              "Gravity"
-            ]}
+            "Varia"
           ],
+          "mapRandoOverride": true,
           "devNote": "In the original game either suit provides full immunity, but many randomizers reduce Gravity's resistance."
         },
         {
           "name": "h_heatResistant",
           "requires": [
-            {"or": [
-              "Varia",
-              "Gravity"
-            ]}
+            "Varia"
           ],
+          "mapRandoOverride": true,
           "devNote": [
             "Half to full heat reduction.",
             "If a randomizer wants to reduce the heat resistance of Gravity to less than 50%, they will need to double check everywhere this is used."
@@ -31,8 +27,10 @@
         {
           "name": "h_lavaProof",
           "requires": [
+            "Varia",
             "Gravity"
           ],
+          "mapRandoOverride": true,
           "devNote": "In the original game Gravity provides full immunity, but some randomizers also require Varia."
         },
         {
@@ -43,6 +41,7 @@
               "Gravity"
             ]}
           ],
+          "mapRandoOverride": false,
           "note": [
             "Suit requirements in order to have at least 50% damage reduction from enemies."
           ],
@@ -53,8 +52,10 @@
         {
           "name": "h_fullEnemyDamageReduction",
           "requires": [
+            "Varia",
             "Gravity"
           ],
+          "mapRandoOverride": true,
           "note": ["Suit requirements in order to have 75% damage reduction from enemies."],
           "devNote": [
             "In the vanilla game, Gravity alone provides 75% damage reduction, but some randomizer may require both suits."
@@ -68,6 +69,7 @@
               "Gravity"
             ]}
           ],
+          "mapRandoOverride": false,
           "note": [
             "Suit requirements in order to have at least 50% damage reduction from spikes, thorns, and electricity."
           ],
@@ -78,8 +80,9 @@
         {
           "name": "h_allItemsSpawned",
           "requires": [
-            "never"
+            "i_AllItemsSpawn"
           ],
+          "mapRandoOverride": true,
           "devNote": [
             "In the original game, some items don't spawn until certain conditions are met.",
             "These may be unintuitive to players, so randomizers may want to instead spawn all items at all times, which can be done by removing the 'never' in this helper.",
@@ -91,9 +94,8 @@
         },
         {
           "name": "h_EverestMorphTunnelExpanded",
-          "requires": [
-            "never"
-          ],
+          "requires": [],
+          "mapRandoOverride": true,
           "devNote": [
             "In order to be able to randomize the connection of the Everest/Main Street morph tunnel, the doorway needs to be expanded to a normal doorway height.",
             "Without being expanded, Samus will get stuck in the wall upon entry unless she enters morphed at the bottom of the transition.",
@@ -102,9 +104,8 @@
         },
         {
           "name": "h_activateBombTorizo",
-          "requires": [
-            "Bombs"
-          ],
+          "requires": [],
+          "mapRandoOverride": true,
           "devNote": [
             "In the vanilla game, Bomb Torizo is activated by having collected Bombs.",
             "This may be changed in randomizers, e.g. to make it activate when collecting the (randomized) item in Bomb Torizo Room.",
@@ -114,13 +115,20 @@
         {
           "name": "h_activateAcidChozo",
           "requires": [
-            "SpaceJump"
+            {"or": [
+              "SpaceJump",
+              "i_AcidChozoWithoutSpaceJump"
+            ]}
           ],
+          "mapRandoOverride": true,
           "devNote": "In Vanilla, the Acid Chozo Statue requires Space Jump to activate. This may be unintuitive in a randomizer, as many players will have never been there without Space Jump."
         },
         {
           "name": "h_ShaktoolVanillaFlag",
-          "requires": [],
+          "requires": [
+            "never"
+          ],
+          "mapRandoOverride": true,
           "devNote": [
             "In Vanilla, the flag 'f_ShaktoolDoneDigging' is set when on the right side of the room, regardless of which door Samus entered through.",
             "For the behavior where the flag is set by crossing to opposite side of the room, set this to 'never'.",
@@ -129,9 +137,8 @@
         },
         {
           "name": "h_ShaktoolSymmetricFlag",
-          "requires": [
-            "never"
-          ],
+          "requires": [],
+          "mapRandoOverride": true,
           "devNote": [
             "In Vanilla, the flag 'f_ShaktoolDoneDigging' is set when on the right side of the room, regardless of which door Samus entered through.",
             "For the behavior where the flag is set by crossing to opposite side of the room, set this to an empty requirement list.",
@@ -140,28 +147,30 @@
         },
         {
           "name": "h_ShaktoolCameraFix",
-          "requires": [
-            "never"
-          ],
+          "requires": [],
+          "mapRandoOverride": true,
           "devNote": "In Vanilla, the camera is messed up when entering from the right. Fixing the camera changes the room behavior by allowing the snails to move."
         },
         {
           "name": "h_KraidCameraFix",
           "requires": [
-            "never"
+            "i_KraidCameraFix"
           ],
+          "mapRandoOverride": true,
           "devNote": "In Vanilla, the camera is fixed to the bottom left tile if Kraid is alive. When entering from the right, Samus will spawn in the middle of the room, likely dropping into the thorns."
         },
         {
           "name": "h_CrocomireCameraFix",
           "requires": [
-            "never"
+            "i_CrocomireCameraFix"
           ],
+          "mapRandoOverride": true,
           "devNote": "In Vanilla, the camera is messed up when entering from the left with Crocomire alive."
         },
         {
           "name": "h_equipmentScreenFix",
           "requires": [],
+          "mapRandoOverride": false,
           "devNote": [
             "In Vanilla, the equipment screen behaves oddly which can cause difficulty when disabling equipment.",
             "Most items can always be toggled, the exceptions are suits and Screw Attack;",
@@ -176,22 +185,25 @@
         {
           "name": "h_ClimbWithoutLava",
           "requires": [
-            "h_ZebesNotAwake"
+            "i_ClimbWithoutLava"
           ],
+          "mapRandoOverride": true,
           "devNote": "In Vanilla, when entering the bottom left door of the Climb, there is rising Lava if Zebes is awake (this is instead acid in the escape)."
         },
         {
           "name": "h_MissileRefillStationAllAmmo",
           "requires": [
-            "never"
+            "i_ammoRefillAll"
           ],
+          "mapRandoOverride": true,
           "devNote": "In Vanilla, Missile refill stations only refill Missiles. This and 'h_useMissileRefillStation' can be changed if the stations refill Missiles, Supers, and Power Bombs."
         },
         {
           "name": "h_useMissileRefillStation",
           "requires": [
-            {"refill": ["Missile"]}
-          ]
+            "i_ammoRefill"
+          ],
+          "mapRandoOverride": true
         },
         {
           "name": "h_RefillStationAllAmmo10PowerBombCrystalFlash",
@@ -200,45 +212,45 @@
             "canRefillStation10PowerBombCrystalFlash",
             {"partialRefill": {"type": "Energy", "limit": 1500}},
             {"refill": ["Missile", "Super", "PowerBomb"]}
-          ]
+          ],
+          "mapRandoOverride": false
         },
         {
           "name": "h_useEnergyRefillStation",
           "requires": [
-            {"refill": ["RegularEnergy"]}
+            "i_energyStationRefill"
           ],
+          "mapRandoOverride": true,
           "devNote": "In Vanilla, Energy refill stations only refill regular energy. This can be changed if the stations refill Reserve energy as well."
         },
         {
           "name": "h_openTourianEscape1RightDoor",
-          "requires": [
-            "never"
-          ],
+          "requires": [],
+          "mapRandoOverride": true,
           "devNote": "In Vanilla, there is a wall preventing the player from accessing the right door."
         },
         {
           "name": "h_LowerNorfairElevatorDownwardFrames",
           "requires": [
-            {"heatFrames": 60}
+            "i_LowerNorfairElevatorDownwardFrames"
           ],
+          "mapRandoOverride": true,
           "devNote": "This may be changed if the elevator speed is changed."
         },
         {
           "name": "h_LowerNorfairElevatorUpwardFrames",
           "requires": [
-            {"heatFrames": 108}
+            "i_LowerNorfairElevatorUpwardFrames"
           ],
+          "mapRandoOverride": true,
           "devNote": "This may be changed if the elevator speed is changed."
         },
         {
           "name": "h_MainHallElevatorFrames",
           "requires": [
-            {"heatFrames": 436},
-            {"or": [
-              "h_heatResistant",
-              {"resourceCapacity": [{"type": "RegularEnergy", "count": 149}]}
-            ]}
+            "i_MainHallElevatorFrames"
           ],
+          "mapRandoOverride": true,
           "devNote": [
             "Samus can not manually use reserves during the elevator, so enough regular energy is needed for the elevator ride unless she is using an auto reserve strat.",
             "This may be changed if the elevator speed is changed.",
@@ -251,15 +263,20 @@
             {"or": [
               {"partialRefill": {"type": "Energy", "limit": 1120}},
               {"and": [
-                "Varia",
+                {"or": [
+                  "Varia",
+                  "Gravity"
+                ]},
                 {"partialRefill": {"type": "Energy", "limit": 1310}}
               ]},
               {"and": [
+                "Varia",
                 "Gravity",
                 {"partialRefill": {"type": "Energy", "limit": 1410}}
               ]}
             ]}
-          ]
+          ],
+          "mapRandoOverride": true
         },
         {
           "name": "h_heatedCrystalFlashRefill",
@@ -269,13 +286,10 @@
               {"and": [
                 "Varia",
                 {"partialRefill": {"type": "Energy", "limit": 1500}}
-              ]},
-              {"and": [
-                "Gravity",
-                {"partialRefill": {"type": "Energy", "limit": 1500}}
               ]}
             ]}
-          ]
+          ],
+          "mapRandoOverride": true
         },
         {
           "name": "h_heatedLavaCrystalFlashRefill",
@@ -283,15 +297,21 @@
             {"or": [
               {"partialRefill": {"type": "Energy", "limit": 1330}},
               {"and": [
+                "Gravity",
+                {"partialRefill": {"type": "Energy", "limit": 1385}}
+              ]},
+              {"and": [
                 "Varia",
                 {"partialRefill": {"type": "Energy", "limit": 1440}}
               ]},
               {"and": [
+                "Varia",
                 "Gravity",
                 {"partialRefill": {"type": "Energy", "limit": 1500}}
               ]}
             ]}
-          ]
+          ],
+          "mapRandoOverride": true
         },
         {
           "name": "h_heatedAcidCrystalFlashRefill",
@@ -304,16 +324,18 @@
               ]},
               {"and": [
                 "Gravity",
-                {"partialRefill": {"type": "Energy", "limit": 1410}}
+                {"partialRefill": {"type": "Energy", "limit": 1365}}
               ]}
             ]}
-          ]
+          ],
+          "mapRandoOverride": true
         },
         {
           "name": "h_doorImmediatelyClosedFix",
           "requires": [
             "never"
           ],
+          "mapRandoOverride": false,
           "devNote": [
             "In Vanilla, there is a bug placing the closing door at the top of the Etecoon Shaft in the wrong location.",
             "Additionally, the top right door in both Mission Impossible Room and Halfie Climb Room are immediately closed.",
@@ -324,13 +346,15 @@
         {
           "name": "h_SupersDoubleDamageMotherBrain",
           "requires": [
-            "never"
+            "i_SupersDoubleDamageMotherBrain"
           ],
+          "mapRandoOverride": true,
           "devNote": "In Vanilla, Supers do 300 damage to Mother Brain. Randomizers may want to double this to help prevent Charge being required so frequently."
         },
         {
           "name": "h_bypassMotherBrainRoom",
           "requires": [],
+          "mapRandoOverride": false,
           "devNote": [
             "This helper is required on strats that completely bypass the right side of Mother Brain Room.",
             "For example, in Map Rando these would allow initiating the Mother Brain fight without first completing the objectives."
@@ -338,13 +362,17 @@
         },
         {
           "name": "h_ShinesparksCostEnergy",
-          "requires": []
+          "requires": [
+            "i_ShinesparksCostEnergy"
+          ],
+          "mapRandoOverride": true
         },
         {
           "name": "h_equipmentScreenCycleFrames",
           "requires": [
-            {"cycleFrames": 300}
+            "i_equipmentScreenCycleFrames"
           ],
+          "mapRandoOverride": true,
           "note": [
             "This represents the amount of time that could be required in the pause menu to equip or unequip items."
           ],
@@ -359,13 +387,15 @@
           "requires": [
             "h_equipmentScreenCycleFrames",
             "h_equipmentScreenCycleFrames"
-          ]
+          ],
+          "mapRandoOverride": false
         },
         {
           "name": "h_SpeedBoosterHallNoRisingLava",
           "requires": [
             "f_ClearedSpeedBoosterLavaTrap"
           ],
+          "mapRandoOverride": false,
           "devNote": [
             "In vanilla, Speed Booster Hall has rising lava when traversing the room right to left",
             "for the first time after collecting Speed Booster.",
@@ -384,11 +414,9 @@
         {
           "name": "h_blueGateGlitchLeniency",
           "requires": [
-            {"or": [
-              {"ammo": {"type": "Missile", "count": "n_gateGlitchLenience"}},
-              {"ammo": {"type": "Super", "count": "n_gateGlitchLenience"}}
-            ]}
+            "i_blueGateGlitchLeniency"
           ],
+          "mapRandoOverride": true,
           "devNote": [
             "Ammo for a extra shots for leniency.",
             "FIXME: A mixture of Missiles and Supers could be used for leniency."
@@ -399,14 +427,15 @@
           "requires": [
             {"ammo": {"type": "Super", "count": "n_gateGlitchLenience"}}
           ],
+          "mapRandoOverride": false,
           "devNote": "Ammo for extra shots for leniency."
         },
         {
           "name": "h_heatedBlueGateGlitchLeniency",
           "requires": [
-            "h_blueGateGlitchLeniency",
-            {"heatFrames": {"mul": [60, "n_gateGlitchLenience"]}}
+            "i_heatedBlueGateGlitchLeniency"
           ],
+          "mapRandoOverride": true,
           "devNote": "This includes 60 heatFrames per leniency attempt."
         },
         {
@@ -415,6 +444,7 @@
             "h_greenGateGlitchLeniency",
             {"heatFrames": {"mul": [60, "n_gateGlitchLenience"]}}
           ],
+          "mapRandoOverride": false,
           "devNote": "This includes 60 heatFrames per leniency attempt."
         },
         {
@@ -425,13 +455,15 @@
               {"ammo": {"type": "Missile", "count": 3}},
               {"ammo": {"type": "Super", "count": 1}}
             ]}
-          ]
+          ],
+          "mapRandoOverride": false
         },
         {
           "name": "h_extendedMoondanceBeetomLeniency",
           "requires": [
             {"enemyDamage": {"enemy": "Beetom", "type": "contact", "hits": 3}}
           ],
+          "mapRandoOverride": false,
           "devNote": "Moving carefully while switching weapons makes it more likely to take random damage."
         },
         {
@@ -444,7 +476,8 @@
               "canTrickyJump",
               {"thornHits": 3}
             ]}
-          ]
+          ],
+          "mapRandoOverride": false
         },
         {
           "name": "h_IBJFromSpikes",
@@ -456,7 +489,8 @@
               "canTrickyJump",
               {"spikeHits": 3}
             ]}
-          ]
+          ],
+          "mapRandoOverride": false
         },
         {
           "name": "h_heatedIBJFromSpikes",
@@ -472,7 +506,8 @@
                 {"heatFrames": 300}
               ]}
             ]}
-          ]
+          ],
+          "mapRandoOverride": false
         },
         {
           "name": "h_SpringwallOverSpikes",
@@ -483,6 +518,7 @@
               {"spikeHits": 2}
             ]}
           ],
+          "mapRandoOverride": false,
           "devNote": "2 extra attempts for leniency."
         },
         {
@@ -494,6 +530,7 @@
               {"heatFrames": 500}
             ]}
           ],
+          "mapRandoOverride": false,
           "devNote": "2 extra attempts for leniency."
         }
       ]
@@ -1288,6 +1325,15 @@
             "h_openZebetitesLeniency"
           ],
           "devNote": "Technically all of the strats that use missiles can be done with 1 fewer missile. It requires fairly precise timing and dodging to open it fast enough."
+        },
+        {
+          "name": "h_AllMotherBrainBarriersCleared",
+          "requires": [
+            "i_MotherBrainBarrier1Clear",
+            "i_MotherBrainBarrier2Clear",
+            "i_MotherBrainBarrier3Clear",
+            "i_MotherBrainBarrier4Clear"
+          ]
         },
         {
           "name": "h_partiallyBreakMotherBrainGlass",
