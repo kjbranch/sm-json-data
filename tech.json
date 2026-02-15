@@ -2978,8 +2978,7 @@
             "canDash"
           ],
           "otherRequires": [
-            "h_sparkBoosterItem",
-            {"noFlashSuit": {}}
+            "h_shinechargeMaxRunway"
           ],
           "note": [
             "Starting from an air environment, run into water and charge a spark in the water. This is typically done while crossing a door transition from a room with air physics to a room with water.",
