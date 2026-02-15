@@ -2145,7 +2145,7 @@
                 "canDash"
               ],
               "otherRequires": [
-                "SpeedBooster"
+                "h_blueBoosterItem"
               ],
               "note": [
                 "The ability to use dash speed with Speed Booster to jump higher and possibly further.",
@@ -2351,14 +2351,14 @@
             "canDash"
           ],
           "otherRequires": [
-            "SpeedBooster"
+            "h_anyBoosterItem"
           ],
           "note": [
             "The ability to control Samus' run speed while shortcharging by releasing run after achieving blue.",
             "Being able to 4 tap is expected as that brings out the most value from this tech."
           ],
           "devNote": [
-            "The SpeedBooster and canDash requirements are included to be safe, though they would be redundant",
+            "The h_anyBoosterItem and canDash requirements are included to be safe, though they would be redundant",
             "with the shinecharge or blue speed requirements that should always accompany this tech"
           ]
         },
@@ -2653,7 +2653,7 @@
           "name": "canCarryBlueSuit",
           "techRequires": [],
           "otherRequires": [
-            "SpeedBooster",
+            "h_blueBoosterItem",
             "canShinechargeMovementComplex"
           ],
           "note": [
@@ -2670,7 +2670,7 @@
             "therefore, release directional inputs in order to get such a boost."
           ],
           "devNote": [
-            "It is possible to carry a blue suit without Speed Booster, but in this case the blue suit will be lost if the game is paused,",
+            "It is possible to carry a blue suit without Speed Booster or Blue Booster, but in this case the blue suit will be lost if the game is paused,",
             "and we are not yet prepared to model this."
           ],
           "extensionTechs": [
@@ -2856,7 +2856,7 @@
             "canDash"
           ],
           "otherRequires": [
-            "SpeedBooster"
+            "h_blueBoosterItem"
           ],
           "note": [
             "The ability to retain the Dash counter and momentum by frame perfectly unmorphing before taking damage from spikes.",
@@ -2893,7 +2893,7 @@
             "canDash"
           ],
           "otherRequires": [
-            "SpeedBooster",
+            "h_blueBoosterItem",
             {"noFlashSuit": {}}
           ],
           "note": [
@@ -2978,7 +2978,7 @@
             "canDash"
           ],
           "otherRequires": [
-            "SpeedBooster",
+            "h_sparkBoosterItem",
             {"noFlashSuit": {}}
           ],
           "note": [

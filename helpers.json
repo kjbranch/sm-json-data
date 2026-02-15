@@ -1072,7 +1072,7 @@
           "name": "h_underwaterChainTemporaryBlue",
           "requires": [
             {"tech": "canChainTemporaryBlue"},
-            "SpeedBooster",
+            "h_blueBoosterItem",
             "Morph",
             {"or": [
               {"disableEquipment": "Gravity"},
@@ -1087,7 +1087,7 @@
           "name": "h_waterGetBlueSpeed",
           "requires": [
             {"tech": "canWaterShineCharge"},
-            "SpeedBooster",
+            "h_blueBoosterItem",
             "canDash"
           ],
           "devNote": [
@@ -1099,7 +1099,7 @@
           "name": "h_stutterWaterGetBlueSpeed",
           "requires": [
             {"tech": "canStutterWaterShineCharge"},
-            "SpeedBooster",
+            "h_blueBoosterItem",
             "canDash"
           ],
           "devNote": [
@@ -1333,6 +1333,34 @@
             "i_MotherBrainBarrier2Clear",
             "i_MotherBrainBarrier3Clear",
             "i_MotherBrainBarrier4Clear"
+          ]
+        },
+        {
+          "name": "h_anyBoosterItem",
+          "requires": [
+            {"or": [
+              "SpeedBooster",
+              "BlueBooster",
+              "SparkBooster"
+            ]}
+          ]
+        },
+        {
+          "name": "h_blueBoosterItem",
+          "requires": [
+            {"or": [
+              "SpeedBooster",
+              "BlueBooster"
+            ]}
+          ]
+        },
+        {
+          "name": "h_sparkBoosterItem",
+          "requires": [
+            {"or": [
+              "SpeedBooster",
+              "SparkBooster"
+            ]}
           ]
         },
         {
@@ -1720,36 +1748,31 @@
         {
           "name": "h_speedDash",
           "requires": [
-            "SpeedBooster",
+            "h_anyBoosterItem",
             "canDash"
           ],
           "devNote": [
-            "This for using Speed Booster to gain high run speed, for cases that do not involve a jump nor blue speed."
+            "This for using Speed Booster (or Blue Booster or Spark Booster) to gain high run speed, for cases that do not involve a jump nor blue speed."
           ]
         },
         {
           "name": "h_speedJump",
           "requires": [
-            "h_speedDash"
+            "h_blueBoosterItem",
+            "canDash"
           ],
           "note": [
-            "This represents using the speed from Speed Booster to jump with high horizontal speed."
-          ],
-          "devNote": [
-            "This has the same requirements as `h_speedDash`, but is separated to help support modified Speed Booster items in randomizers."
+            "This represents using the speed from Speed Booster (or Blue Booster) to jump with high horizontal speed."
           ]
         },
         {
           "name": "h_blueJump",
           "requires": [
-            "h_speedJump"
+            "h_blueBoosterItem",
+            "canDash"
           ],
           "note": [
             "This represents using Speed Booster to jump with blue speed or to run off of a ledge with blue speed."
-          ],
-          "devNote": [
-            "This needs Speed Booster, but it would be covered by a preceding `getBlueSpeed` or similar requirement.",
-            "This helper exists to help support modified Speed Booster items in randomizers."
           ]
         },
         {
