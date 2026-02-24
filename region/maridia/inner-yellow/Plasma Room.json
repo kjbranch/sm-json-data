@@ -582,7 +582,6 @@
         {"shinespark": {"frames": 30, "excessFrames": 7}},
         "canUseSpeedEchoes",
         {"or": [
-          "canCameraManip",
           {"and": [
             {"getBlueSpeed": {"usedTiles": 19, "openEnd": 0}},
             {"canShineCharge": {"usedTiles": 21, "openEnd": 0}},
@@ -598,6 +597,13 @@
               "hits": 1
             }}
           ]}
+        ]},
+        {"or": [
+          "h_speedJump",
+          "canWalljump",
+          "HiJump",
+          "canTrickySpringBallJump",
+          "SpaceJump"
         ]}
       ],
       "clearsObstacles": ["A"],
@@ -623,7 +629,7 @@
         "Building a spark towards the left allows for enough run speed to jump to the middle level.",
         "Then vertical shinespark out which kills the top pirate."
       ],
-      "devNote": "Killing the top pirate naturally puts you at 1"
+      "devNote": "Killing the top pirate naturally ends at 1."
     },
     {
       "id": 18,
