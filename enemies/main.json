@@ -221,6 +221,14 @@
         "super": 8,
         "powerBomb": 8
       },
+      "buffedDrops": {
+        "noDrop": 2,
+        "smallEnergy": 14,
+        "bigEnergy": 38,
+        "missile": 24,
+        "super": 16,
+        "powerBomb": 8
+      },
       "dims": {
         "w": 16,
         "h": 16
@@ -630,6 +638,14 @@
         "super": 24,
         "powerBomb": 4
       },
+      "buffedDrops": {
+        "noDrop": 0,
+        "smallEnergy": 8,
+        "bigEnergy": 26,
+        "missile": 12,
+        "super": 48,
+        "powerBomb": 8
+      },
       "dims": {
         "w": 8,
         "h": 8
@@ -653,6 +669,14 @@
         "missile": 4,
         "super": 40,
         "powerBomb": 2
+      },
+      "buffedDrops": {
+        "noDrop": 0,
+        "smallEnergy": 0,
+        "bigEnergy": 56,
+        "missile": 2,
+        "super": 40,
+        "powerBomb": 4
       },
       "dims": {
         "w": 8,
@@ -762,6 +786,14 @@
         "missile": 24,
         "super": 24,
         "powerBomb": 4
+      },
+      "buffedDrops": {
+        "noDrop": 0,
+        "smallEnergy": 8,
+        "bigEnergy": 26,
+        "missile": 12,
+        "super": 48,
+        "powerBomb": 8
       },
       "dims": {
         "w": 8,
@@ -1062,6 +1094,14 @@
         "missile": 28,
         "super": 8,
         "powerBomb": 8
+      },
+      "buffedDrops": {
+        "noDrop": 0,
+        "smallEnergy": 20,
+        "bigEnergy": 38,
+        "missile": 20,
+        "super": 8,
+        "powerBomb": 16
       },
       "dims": {
         "w": 16,
@@ -1475,6 +1515,14 @@
         "super": 28,
         "powerBomb": 4
       },
+      "buffedDrops": {
+        "noDrop": 2,
+        "smallEnergy": 0,
+        "bigEnergy": 40,
+        "missile": 24,
+        "super": 28,
+        "powerBomb": 8
+      },
       "dims": {
         "w": 8,
         "h": 8
@@ -1602,6 +1650,14 @@
         "missile": 24,
         "super": 24,
         "powerBomb": 4
+      },
+      "buffedDrops": {
+        "noDrop": 2,
+        "smallEnergy": 24,
+        "bigEnergy": 24,
+        "missile": 20,
+        "super": 24,
+        "powerBomb": 8
       },
       "dims": {
         "w": 8,
