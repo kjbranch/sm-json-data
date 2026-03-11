@@ -27,12 +27,15 @@
             {
               "name": "Base",
               "requires": [
-                {"obstaclesCleared": ["A"]}
+                {"or": [
+                  {"obstaclesCleared": ["A"]},
+                  "f_ClearedMetalPiratesRoom"
+                ]}
               ],
               "flashSuitChecked": true
             }
           ],
-          "yields": ["f_ZebesAwake"],
+          "yields": ["f_ZebesAwake", "f_ClearedMetalPiratesRoom"],
           "devNote": "The requirements for obstacle A are in a strat at node 2."
         }
       ],
@@ -44,10 +47,30 @@
       "id": 2,
       "name": "Right Door",
       "nodeType": "door",
-      "nodeSubType": "blue",
+      "nodeSubType": "gray",
       "nodeAddress": "0x0019a3e",
       "doorOrientation": "right",
       "doorEnvironments": [{"physics": "air"}],
+      "locks": [
+        {
+          "name": "Metal Pirates Grey Lock (to Wasteland)",
+          "lockType": "killEnemies",
+          "unlockStrats": [
+            {
+              "name": "Base",
+              "requires": [
+                {"or": [
+                  {"obstaclesCleared": ["A"]},
+                  "f_ClearedMetalPiratesRoom"
+                ]}
+              ],
+              "flashSuitChecked": true,
+              "blueSuitChecked": true
+            }
+          ],
+          "yields": ["f_ZebesAwake", "f_ClearedMetalPiratesRoom"]
+        }
+      ],
       "mapTileMask": [
         [1, 2, 2]
       ]
