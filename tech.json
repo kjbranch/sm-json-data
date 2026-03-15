@@ -2116,6 +2116,18 @@
             "Doing this allows for a fast beam shot following the item use, or can reduce button input complexity.",
             "The button combination is 'Item Select' + 'Item Cancel' pressed together."
           ]
+        },
+        {
+          "id": 10001,
+          "name": "canHyperGateShot",
+          "techRequires": [],
+          "otherRequires": [],
+          "note": [
+            "The ability to shoot blue & green gates from either side using Hyper Beam during the escape.",
+            "This is easy to do; this tech just represents knowing it can be done.",
+            "This is based on a randomizer patch applied on all settings,",
+            "as in the vanilla game it isn't possible to open green gates using Hyper Beam."
+          ]
         }
       ]
     },
@@ -2143,7 +2155,7 @@
                 "canDash"
               ],
               "otherRequires": [
-                "SpeedBooster"
+                "h_blueBoosterItem"
               ],
               "note": [
                 "The ability to use dash speed with Speed Booster to jump higher and possibly further.",
@@ -2371,14 +2383,14 @@
             "canDash"
           ],
           "otherRequires": [
-            "SpeedBooster"
+            "h_anyBoosterItem"
           ],
           "note": [
             "The ability to control Samus' run speed while shortcharging by releasing run after achieving blue.",
             "Being able to 4 tap is expected as that brings out the most value from this tech."
           ],
           "devNote": [
-            "The SpeedBooster and canDash requirements are included for clarity, though they are redundant",
+            "The h_anyBoosterItem and canDash requirements are included for clarity, though they are redundant",
             "with the shinecharge or blue speed requirements that always accompany this tech (enforced by tests)."
           ]
         },
@@ -2673,7 +2685,7 @@
           "name": "canCarryBlueSuit",
           "techRequires": [],
           "otherRequires": [
-            "SpeedBooster",
+            "h_blueBoosterItem",
             "canShinechargeMovementComplex"
           ],
           "note": [
@@ -2690,7 +2702,7 @@
             "therefore, release directional inputs in order to get such a boost."
           ],
           "devNote": [
-            "It is possible to carry a blue suit without Speed Booster, but in this case the blue suit will be lost if the game is paused,",
+            "It is possible to carry a blue suit without Speed Booster or Blue Booster, but in this case the blue suit will be lost if the game is paused,",
             "and we are not yet prepared to model this."
           ],
           "extensionTechs": [
@@ -2880,7 +2892,7 @@
             "canDash"
           ],
           "otherRequires": [
-            "SpeedBooster"
+            "h_blueBoosterItem"
           ],
           "note": [
             "The ability to retain the Dash counter and momentum by frame perfectly unmorphing before taking damage from spikes.",
@@ -2923,7 +2935,7 @@
             "canDash"
           ],
           "otherRequires": [
-            "SpeedBooster",
+            "h_blueBoosterItem",
             {"noFlashSuit": {}}
           ],
           "note": [
@@ -3007,8 +3019,7 @@
             "canDash"
           ],
           "otherRequires": [
-            "SpeedBooster",
-            {"noFlashSuit": {}}
+            "h_shinechargeMaxRunway"
           ],
           "note": [
             "Starting from an air environment, run into water and charge a spark in the water. This is typically done while crossing a door transition from a room with air physics to a room with water.",
@@ -3596,10 +3607,11 @@
           "note": [
             "Understanding game behavior related to how the planet is awakened.",
             "The planet is awakened by unlocking any gray door locked by killing enemies in the room (not including bosses or minibosses).",
-            "Pit Room and Baby Kraid Room are two examples where this can be done.",
+            "Pit Room, Baby Kraid Room, Metal Pirates Room, and Plasma Room are the places where this can be done in the randomizer.",
             "Awakening the planet causes enemies to spawn in Parlor, Climb, Morph Ball Room, Construction Zone, and Blue Brinstar Energy Tank Room.",
-            "It also causes the item in the left side of Morph Ball Room and in 230 Missile Room to spawn.",
-            "The item and enemies in Pit Room do not spawn until entering with Morph and Missiles collected, regardless of whether the planet is awake."
+            "It also causes the item in the left side of Morph Ball Room and in The Final Missile to spawn.",
+            "The item and enemies in Pit Room do not spawn until entering with Morph and Missiles collected, regardless of whether the planet is awake.",
+            "If the quality-of-life option 'All items spawn from start' is enabled, as it is by default, then the items will already be spawned anyway, but awakening the planet can still matter because of its effects on enemies."
           ],
           "devNote": [
             "This tech is for understanding how the planet is awakened and how to utilize that.",

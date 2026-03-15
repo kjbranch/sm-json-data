@@ -26,10 +26,11 @@
             {
               "name": "Base",
               "requires": [
-                "f_DefeatedPhantoon"
+                  {"enemyKill":{ "enemies": [["Phantoon"]]}}
               ],
-              "flashSuitChecked": true
-            }
+              "flashSuitChecked": true,
+              "blueSuitChecked": true
+          }
           ]
         }
       ],
