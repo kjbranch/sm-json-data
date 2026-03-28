@@ -29,13 +29,16 @@
             {
               "name": "Base",
               "requires": [
-                {"obstaclesCleared": ["A"]}
+                {"or": [
+                  {"obstaclesCleared": ["A"]},
+                  "f_ClearedPlasmaRoom"
+                ]}
               ],
               "flashSuitChecked": true,
               "note": "To avoid redundant requirements, obstacle must be destroyed by going to 2->3->1."
             }
           ],
-          "yields": ["f_ZebesAwake"]
+          "yields": ["f_ZebesAwake", "f_ClearedPlasmaRoom"]
         }
       ],
       "mapTileMask": [

@@ -1803,7 +1803,11 @@
       "link": [4, 2],
       "name": "Careful Jump",
       "requires": [
-        "canCarefulJump"
+        {"or": [
+          "canCarefulJump",
+          "i_canEscapeMorphLocation"
+        ]}
+        
       ],
       "flashSuitChecked": true,
       "blueSuitChecked": true
