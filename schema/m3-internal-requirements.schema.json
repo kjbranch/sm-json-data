@@ -11,6 +11,7 @@
     "i_canEscapeMorphLocation",
     "i_ClimbWithoutLava",
     "i_CrocomireCameraFix",
+    "i_enemyDrops",
     "i_energyStationRefill",
     "i_equipmentScreenCycleFrames",
     "i_heatedBlueGateGlitchLeniency",
