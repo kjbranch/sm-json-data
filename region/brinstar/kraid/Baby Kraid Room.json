@@ -26,14 +26,17 @@
             {
               "name": "Base",
               "requires": [
-                {"obstaclesCleared": ["A"]}
+                {"or": [
+                  {"obstaclesCleared": ["A"]},
+                  "f_ClearedBabyKraidRoom"
+                ]}
               ],
               "flashSuitChecked": true,
               "blueSuitChecked": true,
               "note": "Enemies can be killed by going between nodes 1 and 2."
             }
           ],
-          "yields": ["f_ZebesAwake"]
+          "yields": ["f_ZebesAwake", "f_ClearedBabyKraidRoom"]
         }
       ],
       "mapTileMask": [
@@ -56,14 +59,17 @@
             {
               "name": "Base",
               "requires": [
-                {"obstaclesCleared": ["A"]}
+                {"or": [
+                  {"obstaclesCleared": ["A"]},
+                  "f_ClearedBabyKraidRoom"
+                ]}
               ],
               "flashSuitChecked": true,
               "blueSuitChecked": true,
               "note": "Enemies can be killed by going between nodes 1 and 2."
             }
           ],
-          "yields": ["f_ZebesAwake"]
+          "yields": ["f_ZebesAwake", "f_ClearedBabyKraidRoom"]
         }
       ],
       "mapTileMask": [
