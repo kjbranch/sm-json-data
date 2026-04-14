@@ -29,13 +29,16 @@
             {
               "name": "Base",
               "requires": [
-                {"obstaclesCleared": ["A", "B", "C"]}
+                {"or": [
+                  {"obstaclesCleared": ["A", "B", "C"]},
+                  "f_ClearedPlasmaRoom"
+                ]}
               ],
               "flashSuitChecked": true,
               "blueSuitChecked": true
             }
           ],
-          "yields": ["f_ZebesAwake"]
+          "yields": ["f_ZebesAwake", "f_ClearedPlasmaRoom"]
         }
       ],
       "mapTileMask": [
