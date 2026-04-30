@@ -430,6 +430,121 @@
       "exitCondition": {
         "leaveWithRunway": {
           "length": 5,
+          "openEnd": 0
+        }
+      },
+      "flashSuitChecked": true,
+      "blueSuitChecked": true,
+      "note": "Carefully dodge the Rinkas, or take a hit, while carefully avoiding falling off, then use the i-frames to use the runway."
+    },
+    {
+      "id": 10001,
+      "link": [2, 2],
+      "name": "Leave with Runway, 1 Barrier Cleared",
+      "requires": [
+        "i_MotherBrainBarrier1Clear",
+        {"or": [
+          "canTrickyDodgeEnemies",
+          {"and": [
+            "canUseIFrames",
+            {"enemyDamage": {"enemy": "Rinka", "type": "contact", "hits": 1}}
+          ]},
+          {"and": [
+            "Ice",
+            "canTrickyJump"
+          ]}
+        ]}
+      ],
+      "exitCondition": {
+        "leaveWithRunway": {
+          "length": 6,
+          "openEnd": 0
+        }
+      },
+      "flashSuitChecked": true,
+      "blueSuitChecked": true,
+      "note": "Carefully dodge the Rinkas, or take a hit, while carefully avoiding falling off, then use the i-frames to use the runway."
+    },
+    {
+      "id": 10002,
+      "link": [2, 2],
+      "name": "Leave with Runway, 2 Barriers Cleared",
+      "requires": [
+        "i_MotherBrainBarrier1Clear",
+        "i_MotherBrainBarrier2Clear",
+        {"or": [
+          "canTrickyDodgeEnemies",
+          {"and": [
+            "canUseIFrames",
+            {"enemyDamage": {"enemy": "Rinka", "type": "contact", "hits": 1}}
+          ]},
+          {"and": [
+            "Ice",
+            "canTrickyJump"
+          ]}
+        ]}
+      ],
+      "exitCondition": {
+        "leaveWithRunway": {
+          "length": 7,
+          "openEnd": 0
+        }
+      },
+      "flashSuitChecked": true,
+      "blueSuitChecked": true,
+      "note": "Carefully dodge the Rinkas, or take a hit, while carefully avoiding falling off, then use the i-frames to use the runway."
+    },
+    {
+      "id": 10003,
+      "link": [2, 2],
+      "name": "Leave with Runway, 3 Barriers Cleared",
+      "requires": [
+        "i_MotherBrainBarrier1Clear",
+        "i_MotherBrainBarrier2Clear",
+        "i_MotherBrainBarrier3Clear",
+        {"or": [
+          "canTrickyDodgeEnemies",
+          {"and": [
+            "canUseIFrames",
+            {"enemyDamage": {"enemy": "Rinka", "type": "contact", "hits": 1}}
+          ]},
+          {"and": [
+            "Ice",
+            "canTrickyJump"
+          ]}
+        ]}
+      ],
+      "exitCondition": {
+        "leaveWithRunway": {
+          "length": 8,
+          "openEnd": 0
+        }
+      },
+      "flashSuitChecked": true,
+      "blueSuitChecked": true,
+      "note": "Carefully dodge the Rinkas, or take a hit, while carefully avoiding falling off, then use the i-frames to use the runway."
+    },
+    {
+      "id": 10004,
+      "link": [2, 2],
+      "name": "Leave with Runway, 4 Barriers Cleared",
+      "requires": [
+        "h_AllMotherBrainBarriersCleared",
+        {"or": [
+          "canTrickyDodgeEnemies",
+          {"and": [
+            "canUseIFrames",
+            {"enemyDamage": {"enemy": "Rinka", "type": "contact", "hits": 1}}
+          ]},
+          {"and": [
+            "Ice",
+            "canTrickyJump"
+          ]}
+        ]}
+      ],
+      "exitCondition": {
+        "leaveWithRunway": {
+          "length": 9,
           "openEnd": 1
         }
       },
@@ -442,6 +557,7 @@
       "link": [2, 2],
       "name": "Destroy First Zebetite",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         "h_openZebetites",
         {"or": [
           "canDodgeWhileShooting",
@@ -499,6 +615,7 @@
       "link": [2, 3],
       "name": "Ice Zebetite Skip",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         {"notable": "Ice Zebetite Skip"},
         {"noBlueSuit": {}},
         "canUseIFrames",
@@ -553,6 +670,7 @@
         }
       },
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         {"notable": "Speed Zebetite Skip"},
         "canUseIFrames",
         "Morph",
@@ -576,6 +694,7 @@
         "comeInShinecharged": {}
       },
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         {"shineChargeFrames": 100},
         {"notable": "Speed Zebetite Skip"},
         "canUseIFrames",
@@ -597,6 +716,7 @@
       "link": [2, 3],
       "name": "Speed Zebetite Skip (Use Stored Spark)",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         {"notable": "Speed Zebetite Skip"},
         "canUseIFrames",
         "h_storedSpark",
@@ -621,6 +741,7 @@
         "comeInWithRMode": {}
       },
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         "h_CrystalFlashForReserveEnergy",
         "f_KilledZebetites1",
         "f_KilledZebetites2",
@@ -648,6 +769,7 @@
       "link": [2, 5],
       "name": "Base",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         "f_KilledZebetites1",
         {"or": [
           "canDodgeWhileShooting",
@@ -685,6 +807,7 @@
       "link": [3, 4],
       "name": "Missiles",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         "h_partiallyBreakMotherBrainGlass",
         {"ammo": {"type": "Missile", "count": 30}},
         {"or": [
@@ -709,6 +832,7 @@
       "link": [3, 4],
       "name": "Supers",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         "h_partiallyBreakMotherBrainGlass",
         {"or": [
           {"ammo": {"type": "Super", "count": 14}},
@@ -734,6 +858,7 @@
       "link": [3, 4],
       "name": "Combined Ammo",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         "h_partiallyBreakMotherBrainGlass",
         {"or": [
           {"and": [
@@ -782,6 +907,7 @@
       "link": [3, 4],
       "name": "Glass Already Broken",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         "f_MotherBrainGlassBroken",
         {"or": [
           {"and": [
@@ -814,6 +940,7 @@
       "link": [3, 4],
       "name": "Glass Already Broken - Super Kill",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         "f_MotherBrainGlassBroken",
         {"or": [
           {"ammo": {"type": "Super", "count": 10}},
@@ -877,13 +1004,10 @@
       "link": [4, 4],
       "name": "Mother Brain 2 and 3 Fight",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         {"enemyKill": {
           "enemies": [["Mother Brain 2"]]
-        }},
-        {"enemyDamage": {"enemy": "Mother Brain 2", "type": "rainbow", "hits": 1}},
-        {"ammoDrain": {"type": "Missile", "count": 75}},
-        {"ammoDrain": {"type": "Super", "count": 75}},
-        {"ammoDrain": {"type": "PowerBomb", "count": 300}}
+        }}
       ],
       "setsFlags": ["f_ZebesSetAblaze", "f_DefeatedMotherBrain"],
       "flashSuitChecked": true,
@@ -895,6 +1019,7 @@
       "link": [4, 4],
       "name": "R-Mode Reduced Tanks",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         {"notable": "R-Mode Reduced Tanks"},
         {"obstaclesCleared": ["R-Mode"]},
         "h_CrystalFlash",
@@ -929,6 +1054,7 @@
       "link": [4, 4],
       "name": "R-Mode Light Pillar",
       "requires": [
+        "h_AllMotherBrainBarriersCleared",
         {"notable": "R-Mode Light Pillar"},
         {"obstaclesCleared": ["R-Mode"]},
         "h_CrystalFlash",
