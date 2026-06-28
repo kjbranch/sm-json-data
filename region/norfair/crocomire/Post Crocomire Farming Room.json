@@ -1333,6 +1333,7 @@
       ]
     },
     {
+      "id": 100,
       "link": [3, 4],
       "name": "Leave Shinecharged (Wall Jump)",
       "requires": [
@@ -2058,6 +2059,6 @@
       "note": "Use the moving platform (Kamer) to elevate the Gamets."
     }
   ],
-  "nextStratId": 100,
+  "nextStratId": 101,
   "nextNotableId": 3
 }
