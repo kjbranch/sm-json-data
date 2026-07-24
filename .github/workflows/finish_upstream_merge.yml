@@ -32,7 +32,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Create 'ours' merge commit and update map-rando
+      - name: Archive and update map-rando
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           PR_MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
@@ -91,27 +91,15 @@ jobs:
             exit 1
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          # Build an "ours" merge directly: use upstream-merge's tree unchanged,
-          # with upstream-merge first and the old map-rando second as parents.
-          tree="$(git rev-parse --verify "${upstream_merge_sha}^{tree}")"
-          merge_sha="$(
-            printf 'Finish upstream merge from PR #%s\n' "$PR_NUMBER" |
-              git commit-tree "$tree" \
-                -p "$upstream_merge_sha" \
-                -p "$map_rando_sha"
-          )"
-
-          # Verify that the synthetic merge has exactly the upstream-merge tree.
-          test "$(git rev-parse "${merge_sha}^{tree}")" = "$tree"
-
-          # The lease prevents overwriting map-rando if it changed after fetch.
-          git push \
+          # Preserve the complete old map-rando history under a tag
+          # "map-rando-history/pr-${PR_NUMBER}", then point map-rando directly to the squash commit. 
+          # Updating both refs atomically prevents either operation from succeeding alone.
+          archive_tag="map-rando-history/pr-${PR_NUMBER}"
+          git push --atomic \
             --force-with-lease="refs/heads/map-rando:${map_rando_sha}" \
             origin \
-            "${merge_sha}:refs/heads/map-rando"
+            "${map_rando_sha}:refs/tags/${archive_tag}" \
+            "${upstream_merge_sha}:refs/heads/map-rando"
 
           # Delete the disposable PR branch only if it still points to this PR's
           # head. GitHub may already have deleted it automatically.
