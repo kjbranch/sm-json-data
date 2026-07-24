@@ -1,0 +1,144 @@
+name: Finish upstream merge
+
+on:
+  # This uses the workflow from the default branch. A regular pull_request
+  # workflow would disappear when upstream-merge is reset to canonical upstream.
+  pull_request_target:
+    types: [closed]
+    branches:
+      - upstream-merge
+
+permissions:
+  contents: write
+
+concurrency:
+  # Do not update the workflow branches while they are being prepared.
+  group: upstream-merge
+  cancel-in-progress: false
+
+jobs:
+  finish:
+    name: Record merge on map-rando
+    # Ignore closed-but-unmerged PRs and unrelated PRs into upstream-merge.
+    if: >-
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.ref == 'map-rando-tmp' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0
+
+      - name: Create 'ours' merge commit and update map-rando
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Fetch the merged PR result and the existing map-rando branch.
+          git fetch --no-tags origin \
+            "+refs/heads/upstream-merge:refs/remotes/origin/upstream-merge" \
+            "+refs/heads/map-rando:refs/remotes/origin/map-rando"
+
+          upstream_merge_sha="$(git rev-parse --verify refs/remotes/origin/upstream-merge)"
+          map_rando_sha="$(git rev-parse --verify refs/remotes/origin/map-rando)"
+
+          # Recover the starting commits recorded as hidden comments in the PR.
+          expected_base_sha="$(
+            printf '%s\n' "$PR_BODY" |
+              sed -n 's/^<!-- upstream-merge-base: \([0-9a-f]\{40\}\) -->$/\1/p'
+          )"
+          if [[ ! "$expected_base_sha" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::PR #${PR_NUMBER} does not contain a valid upstream base marker."
+            exit 1
+          fi
+
+          expected_map_rando_sha="$(
+            printf '%s\n' "$PR_BODY" |
+              sed -n 's/^<!-- map-rando-base: \([0-9a-f]\{40\}\) -->$/\1/p'
+          )"
+          if [[ ! "$expected_map_rando_sha" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::PR #${PR_NUMBER} does not contain a valid map-rando base marker."
+            exit 1
+          fi
+
+          # Do not discard map-rando updates made while the PR was open.
+          if [[ "$map_rando_sha" != "$expected_map_rando_sha" ]]; then
+            echo "::error::map-rando changed after PR #${PR_NUMBER} was created; refusing to overwrite it."
+            exit 1
+          fi
+
+          # Require upstream-merge to still point to this PR's merge result.
+          if [[ "$upstream_merge_sha" != "$PR_MERGE_SHA" ]]; then
+            echo "::error::upstream-merge no longer points to the commit that merged PR #${PR_NUMBER}."
+            exit 1
+          fi
+
+          # A squash merge produces one commit whose sole parent is the
+          # canonical upstream revision. A normal merge commit has two parents.
+          read -r -a merge_parents <<< "$(
+            git show --no-patch --format='%P' "$upstream_merge_sha"
+          )"
+          if [[ "${#merge_parents[@]}" -ne 1 || "${merge_parents[0]}" != "$expected_base_sha" ]]; then
+            echo "::error::PR #${PR_NUMBER} was not squash-merged as one commit on top of the selected upstream revision."
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Build an "ours" merge directly: use upstream-merge's tree unchanged,
+          # with upstream-merge first and the old map-rando second as parents.
+          tree="$(git rev-parse --verify "${upstream_merge_sha}^{tree}")"
+          merge_sha="$(
+            printf 'Finish upstream merge from PR #%s\n' "$PR_NUMBER" |
+              git commit-tree "$tree" \
+                -p "$upstream_merge_sha" \
+                -p "$map_rando_sha"
+          )"
+
+          # Verify that the synthetic merge has exactly the upstream-merge tree.
+          test "$(git rev-parse "${merge_sha}^{tree}")" = "$tree"
+
+          # The lease prevents overwriting map-rando if it changed after fetch.
+          git push \
+            --force-with-lease="refs/heads/map-rando:${map_rando_sha}" \
+            origin \
+            "${merge_sha}:refs/heads/map-rando"
+
+          # Delete the disposable PR branch only if it still points to this PR's
+          # head. GitHub may already have deleted it automatically.
+          map_rando_tmp_sha="$(
+            git ls-remote origin refs/heads/map-rando-tmp |
+              cut -f1
+          )"
+          if [[ "$map_rando_tmp_sha" == "$PR_HEAD_SHA" ]]; then
+            git push \
+              --force-with-lease="refs/heads/map-rando-tmp:${PR_HEAD_SHA}" \
+              origin \
+              ":refs/heads/map-rando-tmp"
+          elif [[ -n "$map_rando_tmp_sha" ]]; then
+            echo "::warning::map-rando-tmp changed after PR #${PR_NUMBER} was merged; leaving it in place."
+          fi
+
+          # upstream-merge is also disposable. Delete it only if it still points
+          # to this PR's squash commit.
+          upstream_merge_current_sha="$(
+            git ls-remote origin refs/heads/upstream-merge |
+              cut -f1
+          )"
+          if [[ "$upstream_merge_current_sha" == "$PR_MERGE_SHA" ]]; then
+            git push \
+              --force-with-lease="refs/heads/upstream-merge:${PR_MERGE_SHA}" \
+              origin \
+              ":refs/heads/upstream-merge"
+          elif [[ -n "$upstream_merge_current_sha" ]]; then
+            echo "::warning::upstream-merge changed after PR #${PR_NUMBER} was merged; leaving it in place."
+          fi

@@ -1,0 +1,121 @@
+name: Create upstream merge
+
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: Branch, tag, or commit to fetch from vg-json-data/sm-json-data
+        required: true
+        default: master
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  # Do not let branch preparation overlap with the finishing workflow.
+  group: upstream-merge
+  cancel-in-progress: false
+
+jobs:
+  create:
+    name: Reset branch and open pull request
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0
+
+      - name: Prepare upstream-merge and map-rando-tmp
+        id: reset
+        env:
+          UPSTREAM_REF: ${{ inputs.upstream_ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Record the current map-rando tip. The temporary PR branch will start
+          # here, leaving map-rando untouched during conflict resolution.
+          git fetch --no-tags origin \
+            refs/heads/map-rando:refs/remotes/origin/map-rando
+          map_rando_sha="$(git rev-parse --verify 'refs/remotes/origin/map-rando^{commit}')"
+
+          # Resolve the requested branch, tag, or commit in the upstream repo.
+          git remote add canonical-upstream \
+            https://github.com/vg-json-data/sm-json-data.git
+          git fetch --no-tags canonical-upstream "$UPSTREAM_REF"
+          upstream_sha="$(git rev-parse --verify 'FETCH_HEAD^{commit}')"
+
+          # Update both workflow branches together: upstream-merge receives the
+          # upstream revision and map-rando-tmp receives the current map-rando.
+          git push --force --atomic origin \
+            "$upstream_sha:refs/heads/upstream-merge" \
+            "$map_rando_sha:refs/heads/map-rando-tmp"
+
+          # Pass both starting commits to the PR creation step below.
+          echo "upstream_sha=$upstream_sha" >> "$GITHUB_OUTPUT"
+          echo "map_rando_sha=$map_rando_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Open pull request
+        uses: actions/github-script@v7.0.1
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const { owner, repo } = context.repo;
+            const base = "upstream-merge";
+            const head = "map-rando-tmp";
+            const upstreamSha = "${{ steps.reset.outputs.upstream_sha }}";
+            const mapRandoSha = "${{ steps.reset.outputs.map_rando_sha }}";
+            const title = "Merge map-rando changes onto current upstream";
+
+            // The hidden markers preserve the two starting commits for the
+            // finishing workflow which is triggered by this PR's merge
+            // (by the `finish_upstream_merge` workflow).
+            const body = [
+              "This pull request was created by the \"Create upstream merge\" workflow.",
+              "",
+              "**Merge this pull request using Squash and merge.**",
+              "Otherwise the finishing workflow will reject it.",
+              "",
+              "Resolve any conflicts so the resulting `upstream-merge` branch has the",
+              "desired upstream content plus the `map-rando` changes.",
+              "",
+              `<!-- upstream-merge-base: ${upstreamSha} -->`,
+              `<!-- map-rando-base: ${mapRandoSha} -->`,
+            ].join("\n");
+
+            // Reuse the PR if this workflow is rerun before the previous PR is
+            // merged; otherwise create a new one.
+            const { data: existingPulls } = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: "open",
+              base,
+              head: `${owner}:${head}`,
+            });
+
+            if (existingPulls.length > 0) {
+              await github.rest.pulls.update({
+                owner,
+                repo,
+                pull_number: existingPulls[0].number,
+                title,
+                body,
+              });
+              core.notice(`Pull request #${existingPulls[0].number} is already open.`);
+              return;
+            }
+
+            const { data: pull } = await github.rest.pulls.create({
+              owner,
+              repo,
+              base,
+              head,
+              title,
+              body,
+            });
+
+            core.notice(`Created pull request #${pull.number}: ${pull.html_url}`);
