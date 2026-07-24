@@ -29,7 +29,10 @@
     {"name": "SpaceJump", "data": "0xB8"},
     {"name": "SpringBall", "data": "0xB3"},
     {"name": "Plasma", "data": "0xBF"},
-    {"name": "ScrewAttack", "data": "0xB5"}
+    {"name": "ScrewAttack", "data": "0xB5"},
+    {"name": "WallJump"},
+    {"name": "BlueBooster"},
+    {"name": "SparkBooster"}
   ],
   "expansionItems": [
     {
@@ -56,6 +59,10 @@
   "gameFlags": [
     "f_AnimalsSaved",
     "f_BeatSuperMetroid",
+    "f_ClearedBabyKraidRoom",
+    "f_ClearedMetalPiratesRoom",
+    "f_ClearedPitRoom",
+    "f_ClearedPlasmaRoom",
     "f_ClearedSpeedBoosterLavaTrap",
     "f_DefeatedBombTorizo",
     "f_DefeatedBotwoon",
