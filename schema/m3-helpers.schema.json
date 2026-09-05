@@ -55,6 +55,11 @@
                   "title": "Helper Requirements",
                   "description": "Equipment, tech, and flag requirements to perform this helper"
                 },
+                "mapRandoOverride": {
+                  "type": "boolean",
+                  "title": "Map Rando Override",
+                  "description": "Indicates whether or not Map Rando overrides this helper."
+                },
                 "note": {
                   "$ref": "m3-note.schema.json#/definitions/note"
                 },
