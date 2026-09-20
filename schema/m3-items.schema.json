@@ -104,7 +104,7 @@
         "type": "object",
         "title": "Upgrade Item",
         "description": "A non-consumable item that upgrades the player's capabilities",
-        "required": ["name", "data"],
+        "required": ["name"],
         "additionalProperties": false,
         "properties": {
           "name": {
