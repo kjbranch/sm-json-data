@@ -3010,19 +3010,6 @@
       ]
     },
     {
-      "id": 204,
-      "link": [6, 6],
-      "name": "R-Mode Entry",
-      "entranceCondition": {
-        "comeInWithRMode": {},
-        "comesThroughToilet": "no"
-      },
-      "requires": [],
-      "clearsObstacles": ["R-Mode"],
-      "flashSuitChecked": true,
-      "blueSuitChecked": true
-    },
-    {
       "id": 102,
       "link": [6, 6],
       "name": "Leave With Damage - Snail Platform",
@@ -3290,6 +3277,19 @@
         "comesThroughToilet": "any"
       },
       "requires": [],
+      "flashSuitChecked": true,
+      "blueSuitChecked": true
+    },
+    {
+      "id": 204,
+      "link": [6, 9],
+      "name": "R-Mode Entry",
+      "entranceCondition": {
+        "comeInWithRMode": {},
+        "comesThroughToilet": "no"
+      },
+      "requires": [],
+      "clearsObstacles": ["R-Mode"],
       "flashSuitChecked": true,
       "blueSuitChecked": true
     },
@@ -3587,6 +3587,14 @@
         "h_CrystalFlash",
         {"obstaclesNotCleared": ["R-Mode"]}
       ],
+      "flashSuitChecked": true,
+      "blueSuitChecked": true
+    },
+    {
+      "link": [9, 9],
+      "name": "Unlock Door",
+      "requires": [],
+      "unlocksDoors": [{"nodeId": 6, "types": ["ammo"], "requires": []}],
       "flashSuitChecked": true,
       "blueSuitChecked": true
     },
