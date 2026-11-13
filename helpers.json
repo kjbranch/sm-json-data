@@ -1564,10 +1564,7 @@
           "name": "h_jumpIntoCrystalFlashClip",
           "requires": [
             {"tech": "canJumpIntoCrystalFlashClip"},
-            {"or": [
-              "SpringBall",
-              "canMidAirMorph"
-            ]},
+            "canMidAirMorph",
             "h_CrystalFlash",
             {"ammo": {"type": "PowerBomb", "count": "n_jumpIntoCrystalFlashLenience"}}
           ]
@@ -1774,6 +1771,10 @@
                 "canComplexCarryFlashSuit"
               ]}
             ]}
+          ],
+          "devNote": [
+            "This represents needing to shoot up or diagonal up in mid-air, which will consume a flash suit.",
+            "A mid-air morph and unmorph avoids losing the flash suit."
           ]
         },
         {
@@ -1886,6 +1887,7 @@
         {
           "name": "h_RModeCanRefillReserves",
           "requires": [
+            "h_enemyDrops",
             {"or": [
               {"and": [
                 {"resourceAvailable": [{"type": "RegularEnergy", "count": 99}]},
@@ -1895,6 +1897,30 @@
                 {"resourceMissingAtMost": [{"type": "RegularEnergy", "count": 0}]},
                 "canRiskPermanentLossOfAccess"
               ]}
+            ]}
+          ]
+        },
+        {
+          "name": "h_RModeCanRefillReservesWithRespawningFarm",
+          "requires": [
+            {"or": [
+              {"and": [
+                "h_enemyDrops",
+                {"refill": ["Energy"]}
+              ]},
+              "h_CrystalFlashForReserveEnergy"
+            ]}
+          ]
+        },
+        {
+          "name": "h_HeatedRModeCanRefillReservesWithRespawningFarm",
+          "requires": [
+            {"or": [
+              {"and": [
+                "h_enemyDrops",
+                {"refill": ["Energy"]}
+              ]},
+              "h_heatedCrystalFlashForReserveEnergy"
             ]}
           ]
         },
@@ -1962,7 +1988,13 @@
         {
           "name": "h_RModeKnockbackSpark",
           "requires": [
-            {"partialRefill": {"type": "ReserveEnergy", "limit": 4}},
+            {"or": [
+              {"and": [
+                "h_enemyDrops",
+                {"partialRefill": {"type": "ReserveEnergy", "limit": 4}}
+              ]},
+              "h_CrystalFlashForReserveEnergy"
+            ]},
             {"autoReserveTrigger": {"minReserveEnergy": 1, "maxReserveEnergy": 4}},
             "canRModeKnockbackSpark",
             {"shinespark": {"frames": 4, "excessFrames": 4}}

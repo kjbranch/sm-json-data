@@ -1528,17 +1528,7 @@
       "link": [5, 2],
       "name": "Base",
       "requires": [
-        {"or": [
-          "SpaceJump",
-          {"and": [
-            "canPreciseGrapple",
-            {"or": [
-              "h_midAirShootUp",
-              "HiJump",
-              "canWallJump"
-            ]}
-          ]}
-        ]}
+        "SpaceJump"
       ],
       "clearsObstacles": ["B"],
       "flashSuitChecked": true,
@@ -1550,13 +1540,34 @@
       "name": "Grapple, Mama Turtle is Sleeping",
       "requires": [
         "canUseGrapple",
-        "h_midAirShootUp",
+        {"or": [
+          "h_midAirShootUp",
+          "HiJump",
+          "canWallJump"
+        ]},
         {"obstaclesNotCleared": ["A"]}
       ],
       "clearsObstacles": ["B"],
       "flashSuitChecked": true,
       "blueSuitChecked": true,
       "note": "Grappling the block does not require canPreciseGrapple if Mama Turtle is asleep, as there is no risk of death on a miss."
+    },
+    {
+      "id": 74,
+      "link": [5, 2],
+      "name": "Precise Grapple",
+      "requires": [
+        "canPreciseGrapple",
+        {"or": [
+          "h_midAirShootUp",
+          "HiJump",
+          "canWallJump"
+        ]}
+      ],
+      "clearsObstacles": ["B"],
+      "flashSuitChecked": true,
+      "blueSuitChecked": true,
+      "note": "Failing to grapple the block risks death if Mama Turtle is awake."
     },
     {
       "id": 36,
@@ -1631,12 +1642,25 @@
       "blueSuitChecked": true
     },
     {
+      "id": 75,
+      "link": [5, 2],
+      "name": "Spring Ball HiJump onto Grapple Block",
+      "requires": [
+        "HiJump",
+        "canTrickySpringBallJump"
+      ],
+      "clearsObstacles": ["B"],
+      "flashSuitChecked": true,
+      "blueSuitChecked": true,
+      "note": "Pausing and morphing early can help by giving Samus a bit of a Spring Fling."
+    },
+    {
       "id": 41,
       "link": [5, 2],
       "name": "Walljumpless Spring Ball Jump",
       "requires": [
-        "canTrickySpringBallJump",
         "canTrickyJump",
+        "canTrickySpringBallJump",
         "canResetFallSpeed"
       ],
       "flashSuitChecked": true,
@@ -1809,6 +1833,6 @@
       ]
     }
   ],
-  "nextStratId": 74,
+  "nextStratId": 76,
   "nextNotableId": 3
 }
