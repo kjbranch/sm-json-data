@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schema/m3-room.schema.json",
   "id": 225,
-  "name": "Upper Tourian Save Room",
+  "name": "Tourian Map Room",
   "area": "Tourian",
   "subarea": "Main",
   "roomAddress": "0x7DF1B",
@@ -26,8 +26,8 @@
       "id": 2,
       "name": "Save Station",
       "nodeType": "utility",
-      "nodeSubType": "save",
-      "utility": ["save"],
+      "nodeSubType": "map",
+      "utility": ["map"],
       "mapTileMask": [
         [2]
       ]
